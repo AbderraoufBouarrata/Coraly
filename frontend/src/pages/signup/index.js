@@ -42,7 +42,7 @@ const CssTextField = styled(TextField)({
 
 
 export default function Signup() {
-  const [step, setStep] = React.useState('step3')
+  const [step, setStep] = React.useState('step1')
   const styles = {
     background: {
       backgroundColor: '#eafbf9',

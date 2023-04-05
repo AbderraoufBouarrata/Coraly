@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Snackbar from './SnackBar'
 import AuthDesign from '../../components/AuthDesign'
 
@@ -18,6 +18,7 @@ import RectangleCyan from '../../assets/rectangleCyan.png'
 import CircleRed from '../../assets/circleRed.png'
 import CirclePurple from '../../assets/circlePurple.png'
 import DottedSquare from '../../assets/dottedSquare.png'
+import { UserContext } from '../../context/UserContextProvider'
 
 
 const CssTextField = styled(TextField)({
@@ -42,6 +43,33 @@ const CssTextField = styled(TextField)({
 });
 
 export default function Login() {
+  const navigate = useNavigate();
+  const emailRef = React.useRef(null)
+  const passwordRef = React.useRef(null)
+  const [users, setUsers] = React.useState([])
+  const [snackbar, setSnackbar] = React.useState('')
+
+  const usersData = React.useMemo(async () => {
+    const response = await fetch('http://localhost:4000/api/v1/users').then(res => res.json());
+    console.log(response.data)
+    setUsers(response.data)
+  }, [])
+
+  function handleLogin() {
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
+    const exists = users.some(obj => obj.email === email && obj.password === password);
+    console.log(exists)
+    if (exists) {
+      setSnackbar('show')
+      setTimeout(() => {
+        navigate('/board', { replace: true });
+      }, 1000)
+    }
+    else {
+      setSnackbar('error')
+    }
+  }
   const styles = {
     background: {
       backgroundColor: '#f6f8fa',
@@ -78,7 +106,7 @@ export default function Login() {
       clip: 'rect(0, 175px, 350px, 0)',
       transform: 'rotate(65deg)'
     },
-    text:{
+    text: {
       position: 'absolute',
       zIndex: '1',
       fontWeight: 'bold',
@@ -94,6 +122,7 @@ export default function Login() {
       }
     },
   }
+  const user = React.useContext(UserContext)
   return (
     <Grid container>
       <CssBaseline />
@@ -102,8 +131,9 @@ export default function Login() {
           <Box marginBottom='5rem'><img src={Logo} alt='logo' width={80} height={80} /></Box>
           <Typography variant='h4' fontWeight='bold' color='#464356'>Log in</Typography>
           <Typography variant='subtitle1' color='textSecondary' width="24rem">Thanks to Come back on coraly</Typography>
-          <FormControl sx={{marginTop:'2rem'}}>
+          <FormControl sx={{ marginTop: '2rem' }}>
             <CssTextField
+              inputRef={emailRef}
               sx={{ margin: '1rem 0 1rem 0' }}
               type='email'
               required
@@ -113,6 +143,7 @@ export default function Login() {
               width='full'
             />
             <CssTextField
+              inputRef={passwordRef}
               sx={{ margin: '1rem 0 1rem 0' }}
               type='password'
               required
@@ -127,16 +158,23 @@ export default function Login() {
               <Checkbox sx={{ color: 'gray', '&.Mui-checked': { color: '#04385a' } }} />
               <Typography variant='subtitle1' color='textSecondary'>Remember me</Typography>
             </Box>
-            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/reset-password' style={{color: 'inherit' }}>Forgot password?</Link></Typography>
+            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/reset-password' style={{ color: 'inherit' }}>Forgot password?</Link></Typography>
           </Box>
-          <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#04385a', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Log in</Button>
+          <Link style={{ textDecoration: 'none' }}><Button onClick={() => handleLogin()} variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#04385a', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Log in</Button></Link>
           <Box display='flex' flexDirection='row' alignItems='center'>
             <Typography variant='subtitle1' color='textSecondary'>Don't you have an account? </Typography>
-            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/signup' style={{color: 'inherit' }}> Sign up now</Link></Typography>
+            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/signup' style={{ color: 'inherit' }}> Sign up now</Link></Typography>
           </Box>
         </Box>
-        <Snackbar text='Authentification successful!' severity="success" sx={{color: '#34d182', backgroundColor: '#d6fcda', fontWeight: 'bold', borderRadius: '10px', height: '3rem'}} />
-        <Snackbar text='Authentification failed!' severity="error" sx={{color: '#ff4339', backgroundColor: '#ffe8da', fontWeight: 'bold', borderRadius: '10px', height: '3rem'}} />
+        {
+          snackbar === 'show' ?
+            <Snackbar text='Authentification successful!' severity="success" sx={{ color: '#34d182', backgroundColor: '#d6fcda', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
+            :
+            snackbar === 'error' ?
+            <Snackbar text='Authentification failed!' severity="error" sx={{ color: '#ff4339', backgroundColor: '#ffe8da', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
+            :
+            null
+        }
       </Grid>
       <Grid minHeight='100vh' item xs={0} lg={8} sx={styles.background} overflow='hidden'>
         <AuthDesign rectangle={RectangleCyan} triangle={TriangleBlue} circle={CircleRed} halfCircle={CirclePurple} dottedSquare={DottedSquare} styles={styles} />

@@ -40,7 +40,7 @@ const CssTextField = styled(TextField)({
 
 
 export default function Signup() {
-  const [step, setStep] = React.useState('step2')
+  const [step, setStep] = React.useState('')
   const styles = {
     background: {
       backgroundColor: '#ffecf1',
@@ -48,42 +48,42 @@ export default function Signup() {
     },
     triangle: {
       position: 'absolute',
-      bottom: '-100px',
-      left: '100px',
+      top: '50px',
+      right: '-100px',
       transform: 'rotate(45deg)'
     },
     rectangle: {
       position: 'absolute',
-      top: '-50px',
-      right: '150px',
-      transform: 'rotate(30deg)'
+      top: '100px',
+      left: '-150px',
+      transform: 'rotate(-15deg)'
 
     },
     circle: {
       position: 'absolute',
-      top: '100px',
-      left: '-50px'
+      bottom: '-100px',
+      left: '50px'
     },
     dottedSquare: {
       position: 'absolute',
       filter: 'invert(100%) opacity(100%) ',
-      top: '40%',
-      left: '20%'
+      top: '35%',
+      right: '20%'
     },
     halfCircle: {
       position: 'absolute',
-      bottom: '50px',
-      right: '0px',
+      bottom: '0px',
+      right: '-150px',
       clip: 'rect(0, 175px, 350px, 0)',
-      transform: 'rotate(-130deg)'
+      transform: 'rotate(60deg)'
     },
     text: {
       position: 'absolute',
       zIndex: '1',
       fontWeight: 'bold',
       fontSize: '4rem',
-      top: '50%',
-      left: '10%',
+      top: '35%',
+      right: '10%',
     },
     input: {
       "& .MuiOutlinedInput-root": {
@@ -134,31 +134,12 @@ export default function Signup() {
                   <Typography variant='h5' fontWeight='bold' color='#464356'>Insert new password</Typography>
                   <Typography variant='subtitle1' color='textSecondary' width="24rem">insert all your info to proceed with your workspace</Typography>
                   <FormControl sx={{ marginTop: '2rem' }}>
-                    <Box display='flex' justifyContent='space-between' gap='2em'>
-                      <CssTextField
-                        sx={{ margin: '1rem 0 1rem 0', width: '50%' }}
-                        type='text'
-                        required
-                        id=""
-                        label="Name"
-                        InputProps={{ sx: { borderRadius: '10px' } }}
-                        
-                      />
-                      <CssTextField
-                        sx={{ margin: '1rem 0 1rem 0' ,width:'50%'}}
-                        type='text'
-                        required
-                        id=""
-                        label="Surname"
-                        InputProps={{ sx: { borderRadius: '10px' } }}
-                      />
-                    </Box>
                     <CssTextField
                       sx={{ margin: '1rem 0 1rem 0' }}
                       type='password'
                       required
                       id=""
-                      label="Password"
+                      label="New Password"
                       InputProps={{ sx: { borderRadius: '10px' } }}
                       width='full'
                     />
@@ -167,12 +148,12 @@ export default function Signup() {
                       type='password'
                       required
                       id=""
-                      label="Repeat Password"
+                      label="Confirm new password"
                       InputProps={{ sx: { borderRadius: '10px' } }}
                       width='full'
                     />
                   </FormControl>
-                  <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#2ccfbc', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Complete now</Button>
+                  <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#f93e6c', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Confirm new Password</Button>
                 </>
           }
         </Box>

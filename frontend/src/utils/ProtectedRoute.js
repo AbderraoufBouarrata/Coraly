@@ -1,10 +1,13 @@
 import { Outlet, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContextProvider';   
 
-function ProtectedRoute({ user, redirectPath = '/', children }) {
+function ProtectedRoute({ redirectPath = '/', children }) {
+    const user = useContext(UserContext);
     if (!user) {
         return <Navigate to={redirectPath} replace />;
     }
-    return <Outlet>{children}</Outlet>;
+    return <>{children}</>;
 };
 
 export default ProtectedRoute;

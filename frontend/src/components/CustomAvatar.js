@@ -2,12 +2,12 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 
 export default function CustomAvatar(props) {
-    const { name, src } = props;
+    const { name, src, rounded } = props;
 
     const styles = {
         avatar: {
             border: '1px solid #2ccfbc',
-            borderRadius: '25%',
+            borderRadius: rounded ? '50%' : '25%',
             fontWeight: 'bold',
             backgroundColor: '#96e7de',
         }

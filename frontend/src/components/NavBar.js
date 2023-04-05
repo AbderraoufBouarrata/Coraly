@@ -12,6 +12,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 export default function NavBar() {
     const styles = {
         nav: {
+            width: '96vw',
             height: '3.5rem',
             backgroundColor: 'white',
             borderBottom: '3px solid #D6D5D9',

@@ -27,6 +27,7 @@ import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 import CustomAvatar from './CustomAvatar'
 const drawerWidth = 240;
@@ -108,8 +109,8 @@ export default function SideMenu({ children }) {
         setOpen(false);
     };
 
-    const menuText = ["Lasting Dynamics" ,"Dashboard", "Users", "Projects", "Storage", "Devices", "Network", "Help", "Logout"]
-    const menuIcons = [<CustomAvatar name='Lasting Dynamics' src='images/test.png'/>, <GridViewOutlinedIcon />, <PeopleOutlineIcon />, <DescriptionOutlinedIcon />, <StorageOutlinedIcon />, <SmartToyOutlinedIcon />, <AccountTreeOutlinedIcon />, <HelpOutlineIcon />, <ExitToAppRoundedIcon />]
+    const menuText = ["Lasting Dynamics", "Dashboard", "Users", "Projects", "Storage", "Next", "Devices", "Network", "Help", "Logout"]
+    const menuIcons = [<CustomAvatar name='Lasting Dynamics' src='images/test.png' />, <GridViewOutlinedIcon />, <PeopleOutlineIcon />, <DescriptionOutlinedIcon />, <StorageOutlinedIcon />, <KeyboardDoubleArrowRightIcon />, <SmartToyOutlinedIcon />, <AccountTreeOutlinedIcon />, <HelpOutlineIcon />, <ExitToAppRoundedIcon />]
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -153,7 +154,7 @@ export default function SideMenu({ children }) {
                                     sx={{
                                         color: "#eaeaec",
                                         minWidth: open ? 0 : '',
-                             
+
                                         mr: open ? 3 : 'auto',
                                         justifyContent: 'center',
                                     }}

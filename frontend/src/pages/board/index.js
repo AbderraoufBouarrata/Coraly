@@ -1,37 +1,132 @@
 import React from 'react'
+import { Link }  from 'react-router-dom'
 import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
+import Process from './Process'
+import AddIcon from '@mui/icons-material/Add';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: 'none',
+  borderRadius: '15px',
+  boxShadow: 24,
+  p: 4,
+  width: '48rem'
+};
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#04385a',
+    fontWeight: 'bold',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#04385a',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      border: '2px solid lightgray',
+    },
+    '&:hover fieldset': {
+      borderColor: 'gray',
+    },
+    '&.Mui-focused fieldset': {
+      border: '3px solid #04385a',
+    },
+  },
+});
 
 export default function Board() {
+  const [process, setProcess] = React.useState([])
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [color, setColor] = React.useState('red');
+
+  const data = React.useMemo(async () => {
+    const response = await fetch('http://localhost:4000/api/v1/processes').then(res => res.json());
+    console.log(response.data)
+    setProcess(response.data)
+  }, [])
+  
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
-      <Typography paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-        enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-        imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-        Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-        Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-        adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-        nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-        leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-        feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-        consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-        sapien faucibus et molestie ac.
-      </Typography>
-      <Typography paragraph>
-        Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-        eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-        neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-        tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-        sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-        tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-        gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-        et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-        tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-        eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-        posuere sollicitudin aliquam ultrices sagittis orci a.
-      </Typography>
+    <Box sx={{ flexGrow: 1, p: 3, backgroundColor: '#f6f8fa', minHeight: '100vh' }}>
+      <Typography variant='h4' fontWeight='bold'>Welcome, Fabrizio Nilo</Typography>
+      <Typography variant='subtitle1' color='textSecondary' width='32rem' margin='1rem 0'>Work with your team mates, take track of your process and close all your tasks</Typography>
+      <Box display='flex'>
+        <Box sx={{
+          margin: '1rem 0rem',
+          display: 'flex',
+          position: 'relative',
+          flexDirection: 'column',
+          borderRadius: '10px',
+          border: '2px dashed #D6D5D9',
+          width: '12rem',
+          height: '12rem',
+          justifyContent: 'center',
+          alignItems: 'center',
+          "&:hover": {
+            cursor: 'pointer',
+          }
+
+        }}
+          onClick={() => { handleOpen() }}
+        >
+          <AddIcon sx={{ fontSize: 50, color: '#6f6d7b', textAlign: 'center' }} />
+          <Typography variant='h6' width='8rem' sx={{ color: '#6f6d7b', textAlign: 'center', paddingTop: '.5rem' }}>Create a new process</Typography>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box display='flex' flexDirection='column' sx={style}>
+              <Typography id="modal-modal-title" variant="h6" component="h2" fontWeight='bold'>
+                Create a new process
+              </Typography>
+              <CssTextField
+                sx={{ margin: '1rem 0 1rem 0' }}
+                type='text'
+                required
+                id=""
+                label="Process name"
+                InputProps={{ sx: { borderRadius: '10px' } }}
+                width='full'
+              />
+              <CssTextField
+                sx={{ margin: '1rem 0 1rem 0' }}
+                type='color'
+                required
+                id=""
+                label="Color"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+                InputProps={{ sx: { borderRadius: '10px' } }}
+                width='full'
+              />
+              <Box display='flex' justifyContent='end' alignItems='center' flexDirection='row-reverse' gap='1rem'>
+                <Button variant="contained" sx={{ borderRadius: '10px', backgroundColor: '#00bfa5', color: 'white', width: '8rem', height: '3rem', '&:hover': { backgroundColor: '#00bfa5' } }}>Create</Button>
+                <Button variant="outlined" sx={{ border: '2px solid #04385a', borderRadius: '10px', backgroundColor: 'white', color: '#04385a', width: '8rem', height: '3rem' }} onClick={()=>setOpen(false)}>Cancel</Button>
+              </Box>
+            </Box>
+          </Modal>
+        </Box>
+        {
+          process.map((process) => {
+            return (
+              <Link to={`/board/${process.id}`} style={{textDecoration: 'none'}}><Process process={process.name} color={process.color} /></Link>
+            )
+          })
+        }
+      </Box>
     </Box>
   )
 }
