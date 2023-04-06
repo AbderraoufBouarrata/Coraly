@@ -12,16 +12,16 @@ import { styled } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox'
 
 //@ts-ignore 
-import Logo from '../../assets/logo.png'//@ts-ignore 
-import TriangleCyan from '../../assets/triangleCyan.png'//@ts-ignore 
-import RectangleRed from '../../assets/rectangleRed.png'//@ts-ignore 
-import CircleBlue from '../../assets/circleBlue.png'//@ts-ignore 
-import CirclePurple from '../../assets/circlePurple.png'//@ts-ignore 
-import DottedSquare from '../../assets/dottedSquare.png'
+import Logo from '../../assets/images/logo.png'//@ts-ignore 
+import TriangleCyan from '../../assets/images/triangleCyan.png'//@ts-ignore 
+import RectangleRed from '../../assets/images/rectangleRed.png'//@ts-ignore 
+import CircleBlue from '../../assets/images/circleBlue.png'//@ts-ignore 
+import CirclePurple from '../../assets/images/circlePurple.png'//@ts-ignore 
+import DottedSquare from '../../assets/images/dottedSquare.png'
 
-import Step1 from './Step1'
-import Step2 from './Step2'
-import Step3 from './Step3'
+import Step1 from './components/Step1'
+import Step2 from './components/Step2'
+import Step3 from './components/Step3'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {

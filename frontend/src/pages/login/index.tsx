@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Snackbar from './SnackBar'
+import Snackbar from './components/SnackBar'
 import AuthDesign from '../../components/AuthDesign'
 import { UserContext } from '../../context/UserContextProvider'
 
@@ -14,17 +14,17 @@ import { styled } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox'
 
 //@ts-ignore
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/images/logo.png'
 //@ts-ignore
-import TriangleBlue from '../../assets/triangleBlue.png'
+import TriangleBlue from '../../assets/images/triangleBlue.png'
 //@ts-ignore
-import RectangleCyan from '../../assets/rectangleCyan.png'
+import RectangleCyan from '../../assets/images/rectangleCyan.png'
 //@ts-ignore
-import CircleRed from '../../assets/circleRed.png'
+import CircleRed from '../../assets/images/circleRed.png'
 //@ts-ignore
-import CirclePurple from '../../assets/circlePurple.png'
+import CirclePurple from '../../assets/images/circlePurple.png'
 //@ts-ignore
-import DottedSquare from '../../assets/dottedSquare.png'
+import DottedSquare from '../../assets/images/dottedSquare.png'
 
 
 

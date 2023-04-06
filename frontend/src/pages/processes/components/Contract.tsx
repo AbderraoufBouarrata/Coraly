@@ -1,5 +1,5 @@
 import * as React from 'react';
-import DialogCard from './DialogCard';
+import DialogCard from './dialogCard/DialogCard';
 
 
 import { styled } from '@mui/material/styles';
@@ -18,7 +18,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import CustomAvatar from '../../components/CustomAvatar';
+import CustomAvatar from '../../../components/CustomAvatar';
 import SwipeRightAltOutlinedIcon from '@mui/icons-material/SwipeRightAltOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 

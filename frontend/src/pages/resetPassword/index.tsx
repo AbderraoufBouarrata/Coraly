@@ -9,19 +9,19 @@ import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
 import { styled } from '@mui/material/styles';
 //@ts-ignore
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/images/logo.png'
 //@ts-ignore
-import TriangleCyan from '../../assets/triangleCyan.png'
+import TriangleCyan from '../../assets/images/triangleCyan.png'
 //@ts-ignore
-import RectangleRed from '../../assets/rectangleRed.png'
+import RectangleRed from '../../assets/images/rectangleRed.png'
 //@ts-ignore
-import CircleBlue from '../../assets/circleBlue.png'
+import CircleBlue from '../../assets/images/circleBlue.png'
 //@ts-ignore
-import CirclePurple from '../../assets/circlePurple.png'
+import CirclePurple from '../../assets/images/circlePurple.png'
 //@ts-ignore
-import DottedSquare from '../../assets/dottedSquare.png'
+import DottedSquare from '../../assets/images/dottedSquare.png'
 //@ts-ignore
-import Verified from '../../assets/verified.png'
+import Verified from '../../assets/images/verified.png'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {

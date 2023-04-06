@@ -1,5 +1,5 @@
 import React from 'react'
-import SettingsCard from './SettingsCard';
+import SettingsCard from '../settingsCard/SettingsCard';
 import Drawer from './Drawer';
 
 import Box from '@mui/material/Box'

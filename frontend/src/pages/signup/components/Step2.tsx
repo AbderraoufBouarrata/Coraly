@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 //@ts-ignore
-import Verified from '../../assets/verified.png'
+import Verified from '../../../assets/images/verified.png'
 
 type Step1Props = {
     step: string,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CustomAvatar from '../../components/CustomAvatar'
+import CustomAvatar from '../../../../components/CustomAvatar'
 import FieldsPhase from './FieldsPhase'
 import CompanyData from './CompanyData'
 

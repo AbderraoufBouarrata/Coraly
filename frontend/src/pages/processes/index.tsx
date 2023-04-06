@@ -1,6 +1,6 @@
 import React from 'react'
-import Toolbar from './Toolbar'
-import Contract from './Contract'
+import Toolbar from './components/toolbar/Toolbar'
+import Contract from './components/Contract'
 import Box from '@mui/material/Box'
 
 export default function Process() {

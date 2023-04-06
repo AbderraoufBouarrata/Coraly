@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
-import Process from './Process'
+import Process from './components/Process'
 import AddIcon from '@mui/icons-material/Add';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
