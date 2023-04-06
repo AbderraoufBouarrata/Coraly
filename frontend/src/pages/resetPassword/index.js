@@ -153,7 +153,7 @@ export default function Signup() {
                       width='full'
                     />
                   </FormControl>
-                  <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#f93e6c', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Confirm new Password</Button>
+                  <Button variant='contained' sx={{ '&:hover':{ backgroundColor:'#f93e6c'}, borderRadius: '10px', backgroundColor: '#f93e6c', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Confirm new Password</Button>
                 </>
           }
         </Box>

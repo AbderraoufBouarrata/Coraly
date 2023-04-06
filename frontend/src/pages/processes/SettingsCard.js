@@ -79,6 +79,7 @@ export default function SettingsCard(props) {
             margin: '2rem 1rem',
             '&:hover': {
                 cursor: 'pointer',
+                color:'red'
             }
         },
 
@@ -124,7 +125,7 @@ export default function SettingsCard(props) {
                                 InputProps={{ sx: { borderRadius: '10px', } }}
                                 width='full'
                             />
-                            <Typography variant='subtitle1' fontWeight={500} color='' sx={{ margin: '.5rem 0 ' }}>Members</Typography>
+                            <Typography variant='subtitle1' fontWeight={500} color='' sx={{ margin: '.5rem 0 ', fontWeight:'bold' }}>Members</Typography>
                             <Button gap='10rem' variant='contained' sx={{ display:'flex', gap:'1rem', backgroundColor: '#f93e6c', color: 'white', borderRadius: '10px', fontWeight: 'bold', '&:hover': {backgroundColor: '#f93e6c'} }}>
                                 <AddCircleOutlineIcon /> <Typography fontWeight='bold'>Invite</Typography>
                             </Button>

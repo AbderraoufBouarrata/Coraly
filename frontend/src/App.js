@@ -26,8 +26,8 @@ function App() {
               <Route path="/reset-password" element={<ResetPassword />} />
             </Route>
             <Route element={<><MainLayout><Outlet /></MainLayout></>}>
-              <Route path="/board" element={<ProtectedRoute><Board /></ProtectedRoute>} />
-              <Route path="/board/:id" element={<ProtectedRoute><Process /></ProtectedRoute>} />
+              <Route path="/board" element={<><Board /></>} />
+              <Route path="/board/:id" element={<><Process /></>} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

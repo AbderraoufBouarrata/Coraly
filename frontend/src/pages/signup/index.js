@@ -17,7 +17,10 @@ import RectangleRed from '../../assets/rectangleRed.png'
 import CircleBlue from '../../assets/circleBlue.png'
 import CirclePurple from '../../assets/circlePurple.png'
 import DottedSquare from '../../assets/dottedSquare.png'
-import Verified from '../../assets/verified.png'
+
+import Step1 from './Step1'
+import Step2 from './Step2'
+import Step3 from './Step3'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -42,7 +45,7 @@ const CssTextField = styled(TextField)({
 
 
 export default function Signup() {
-  const [step, setStep] = React.useState('step1')
+  const [step, setStep] = React.useState('step3')
   const styles = {
     background: {
       backgroundColor: '#eafbf9',
@@ -104,104 +107,12 @@ export default function Signup() {
           <Box marginBottom='5rem'><img src={Logo} alt='logo' width={80} height={80} /></Box>
           {
             step === 'step1' ?
-              <>
-                <Typography variant='h5' fontWeight='bold' color='#464356'>Create Your Workspace</Typography>
-                <Typography variant='subtitle1' color='textSecondary' width="24rem">Coraly is the best tool to manage your workflow from the same place</Typography>
-                <FormControl sx={{ marginTop: '2rem' }}>
-                  <CssTextField
-                    sx={{ margin: '1rem 0 1rem 0' }}
-                    type='email'
-                    required
-                    id=""
-                    label="Workspace Name"
-                    InputProps={{ sx: { borderRadius: '10px' } }}
-                    width='full'
-                  />
-                  <CssTextField
-                    sx={{ margin: '1rem 0 1rem 0' }}
-                    type='email'
-                    required
-                    id=""
-                    label="Email"
-                    InputProps={{ sx: { borderRadius: '10px' } }}
-                    width='full'
-                  />
-                </FormControl>
-                <Box>
-                  <Box display='flex' flexDirection='row' alignItems='center'>
-                    <Checkbox sx={{ color: 'gray', '&.Mui-checked': { color: '#2ccfbc' } }} />
-                    <Typography variant='subtitle1' color='textSecondary'>
-                      Agree with
-                      <Link style={{ textDecoration: 'none', fontWeight: 'bold', variant: 'subtitle1', color: '#2ccfbc' }}>Terms and Conditions</Link>,
-                      <Link style={{ textDecoration: 'none', fontWeight: 'bold', variant: 'subtitle1', color: '#2ccfbc' }}>Privacy Policy</Link>,
-                      <Link style={{ textDecoration: 'none', fontWeight: 'bold', variant: 'subtitle1', color: '#2ccfbc' }}>Cookie Policy</Link>
-                    </Typography>
-                  </Box>
-                  <Box display='flex' flexDirection='row' alignItems='center'>
-                    <Checkbox sx={{ color: 'gray', '&.Mui-checked': { color: '#2ccfbc' } }} />
-                    <Typography variant='subtitle1' color='textSecondary'>
-                      I autorize Coraly to process my personal data in order to receive informational and promotional and commercial communications via e-mail.
-                    </Typography>
-                  </Box>
-                </Box>
-                <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#2ccfbc', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Create now the account</Button>
-                <Box display='flex' flexDirection='row' alignItems='center'>
-                  <Typography variant='subtitle1' color='textSecondary'>Do you have an account? </Typography>
-                  <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}> Sign in</Link></Typography>
-                </Box>
-              </>
+              <Step1 step={step} setStep={setStep} />
               :
               step === 'step2' ?
-                <>
-                  <Typography variant='h5' fontWeight='bold' color='#464356'>Your workspace is ready</Typography>
-                  <Typography variant='subtitle1' color='textSecondary' width="24rem">check your email inbox.<br />We sent you a confirmation email </Typography>
-                  <img src={Verified} height='25%' width='25%' style={{ margin: '4rem 0 0 2rem' }} />
-                </>
+                <Step2 step={step} setStep={setStep} />
                 :
-                <>
-                  <Typography variant='h5' fontWeight='bold' color='#464356'>Complete your profile</Typography>
-                  <Typography variant='subtitle1' color='textSecondary' width="24rem">insert all your info to proceed with your workspace</Typography>
-                  <FormControl sx={{ marginTop: '2rem' }}>
-                    <Box display='flex' justifyContent='space-between' gap='2em'>
-                      <CssTextField
-                        sx={{ margin: '1rem 0 1rem 0', width: '50%' }}
-                        type='text'
-                        required
-                        id=""
-                        label="Name"
-                        InputProps={{ sx: { borderRadius: '10px' } }}
-                        
-                      />
-                      <CssTextField
-                        sx={{ margin: '1rem 0 1rem 0' ,width:'50%'}}
-                        type='text'
-                        required
-                        id=""
-                        label="Surname"
-                        InputProps={{ sx: { borderRadius: '10px' } }}
-                      />
-                    </Box>
-                    <CssTextField
-                      sx={{ margin: '1rem 0 1rem 0' }}
-                      type='password'
-                      required
-                      id=""
-                      label="Password"
-                      InputProps={{ sx: { borderRadius: '10px' } }}
-                      width='full'
-                    />
-                    <CssTextField
-                      sx={{ margin: '1rem 0 1rem 0' }}
-                      type='password'
-                      required
-                      id=""
-                      label="Repeat Password"
-                      InputProps={{ sx: { borderRadius: '10px' } }}
-                      width='full'
-                    />
-                  </FormControl>
-                  <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#2ccfbc', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Complete now</Button>
-                </>
+                <Step3 step={step} setStep={setStep} />
           }
         </Box>
       </Grid>

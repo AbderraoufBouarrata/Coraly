@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Snackbar from './SnackBar'
 import AuthDesign from '../../components/AuthDesign'
+import { UserContext } from '../../context/UserContextProvider'
 
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -18,7 +19,7 @@ import RectangleCyan from '../../assets/rectangleCyan.png'
 import CircleRed from '../../assets/circleRed.png'
 import CirclePurple from '../../assets/circlePurple.png'
 import DottedSquare from '../../assets/dottedSquare.png'
-import { UserContext } from '../../context/UserContextProvider'
+
 
 
 const CssTextField = styled(TextField)({
@@ -46,20 +47,19 @@ export default function Login() {
   const navigate = useNavigate();
   const emailRef = React.useRef(null)
   const passwordRef = React.useRef(null)
-  const [users, setUsers] = React.useState([])
+  const { user, updateUser } = React.useContext(UserContext)
   const [snackbar, setSnackbar] = React.useState('')
 
   const usersData = React.useMemo(async () => {
     const response = await fetch('http://localhost:4000/api/v1/users').then(res => res.json());
     console.log(response.data)
-    setUsers(response.data)
+    updateUser(response.data)
+    
   }, [])
-
   function handleLogin() {
     const email = emailRef.current.value
     const password = passwordRef.current.value
-    const exists = users.some(obj => obj.email === email && obj.password === password);
-    console.log(exists)
+    const exists = user.some(obj => obj.email === email && obj.password === password);
     if (exists) {
       setSnackbar('show')
       setTimeout(() => {
@@ -122,7 +122,6 @@ export default function Login() {
       }
     },
   }
-  const user = React.useContext(UserContext)
   return (
     <Grid container>
       <CssBaseline />
@@ -171,9 +170,9 @@ export default function Login() {
             <Snackbar text='Authentification successful!' severity="success" sx={{ color: '#34d182', backgroundColor: '#d6fcda', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
             :
             snackbar === 'error' ?
-            <Snackbar text='Authentification failed!' severity="error" sx={{ color: '#ff4339', backgroundColor: '#ffe8da', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
-            :
-            null
+              <Snackbar text='Authentification failed!' severity="error" sx={{ color: '#ff4339', backgroundColor: '#ffe8da', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
+              :
+              null
         }
       </Grid>
       <Grid minHeight='100vh' item xs={0} lg={8} sx={styles.background} overflow='hidden'>

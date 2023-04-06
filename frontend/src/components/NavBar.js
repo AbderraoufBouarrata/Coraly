@@ -8,8 +8,10 @@ import Link from '@mui/material/Link';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import FontDownloadOutlinedIcon from '@mui/icons-material/FontDownloadOutlined';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { useParams } from 'react-router-dom';
 
 export default function NavBar() {
+    const { id } = useParams();
     const styles = {
         nav: {
             width: '96vw',
@@ -28,10 +30,10 @@ export default function NavBar() {
             <Box display="flex" justifyContent="space-between" alignItems="center" padding=".5rem 1rem .5rem 1rem">
                 <Box>
                     <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-                        <Link underline="hover" color="inherit" href="/">
+                        <Link underline="hover" color="inherit" href="/board">
                             <Typography fontWeight="bold" variant="h6">Process</Typography>
                         </Link>
-                        <Typography fontWeight="bold" color="black" variant="h6">Tables</Typography>
+                        {id ? <Typography fontWeight="bold" color="black" variant="h6">Process{id}</Typography>: null}
                     </Breadcrumbs>
                 </Box>
                 <Box display="flex" alignItems="center" gap="1rem">

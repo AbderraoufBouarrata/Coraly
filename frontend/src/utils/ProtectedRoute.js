@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContextProvider';
 
 function ProtectedRoute({ redirectPath = '/', children }) {
     const user = useContext(UserContext);
-    if (!user) {
+    if (!user.user) {
         return <Navigate to={redirectPath} replace />;
     }
     return <>{children}</>;

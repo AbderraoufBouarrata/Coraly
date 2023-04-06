@@ -65,6 +65,15 @@ export default function MembersTable() {
         setAnchorEl(null);
     };
 
+    const styles={
+        icon: {
+            '&:hover': {
+                cursor: 'pointer',
+            },
+
+        }
+    }
+
     const columns = [
         { field: 'utente', headerName: 'Utente', width: 300, sortable: false, disableColumnMenu: true, },
         { field: 'email', headerName: 'Email', width: 600, sortable: false, disableColumnMenu: true, },
@@ -79,7 +88,8 @@ export default function MembersTable() {
                     disableElevation
                     onClick={handleClick}
                     endIcon={<KeyboardArrowDownIcon />}
-                    sx={{ backgroundColor: params.value === 'Admin' ? '#F44336' : params.value === 'User' ? '#FF9800' : params.value === 'Moderator' ? '#2196F3' : '#4CAF50', borderRadius: '15px' }}
+                    sx={{ '&:hover': { backgroundColor: params.value === 'Admin' ? '#F44336' : params.value === 'User' ? '#FF9800' : params.value === 'Moderator' ? '#2196F3' : '#4CAF50' }, color: '#fff',
+                        backgroundColor: params.value === 'Admin' ? '#F44336' : params.value === 'User' ? '#FF9800' : params.value === 'Moderator' ? '#2196F3' : '#4CAF50', borderRadius: '15px' }}
                 >
                     {params.value}
                 </Button>
@@ -121,17 +131,15 @@ export default function MembersTable() {
                 // Render the MUI icon in the cell
                 <>
                     {params.value}
-                    <DeleteIcon /></>
+                    <DeleteIcon sx={styles.icon} /></>
             ),
         },
 
     ];
 
-
     const [rows, setRows] = React.useState([]);
 
     const users = React.useMemo(async () => {
-
         const response = await fetch('http://localhost:4000/api/v1/users').then(res => res.json());
         console.log(response.data)
         const dataWithNames = response.data.map(entry => ({
@@ -141,7 +149,6 @@ export default function MembersTable() {
             permission: entry.permission
         }));
         setRows(dataWithNames);
-
     }, [])
     return (
         <div style={{ height: 400, width: '100%' }}>

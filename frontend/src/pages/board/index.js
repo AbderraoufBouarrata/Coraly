@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link }  from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Process from './Process'
@@ -8,6 +8,9 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import InputAdornment from '@mui/material/InputAdornment';
+import Brightness1Icon from '@mui/icons-material/Brightness1';
 
 const style = {
   position: 'absolute',
@@ -49,14 +52,14 @@ export default function Board() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [color, setColor] = React.useState('red');
+  const [color, setColor] = React.useState('');
 
   const data = React.useMemo(async () => {
     const response = await fetch('http://localhost:4000/api/v1/processes').then(res => res.json());
     console.log(response.data)
     setProcess(response.data)
   }, [])
-  
+
   return (
     <Box sx={{ flexGrow: 1, p: 3, backgroundColor: '#f6f8fa', minHeight: '100vh' }}>
       <Typography variant='h4' fontWeight='bold'>Welcome, Fabrizio Nilo</Typography>
@@ -103,18 +106,29 @@ export default function Board() {
               />
               <CssTextField
                 sx={{ margin: '1rem 0 1rem 0' }}
-                type='color'
+                type='text'
                 required
                 id=""
                 label="Color"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
-                InputProps={{ sx: { borderRadius: '10px' } }}
+                InputProps={{
+                  sx: { borderRadius: '10px' }, 
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Brightness1Icon sx={{color: color}}/>
+                    </InputAdornment>
+                  ),
+                  endAdornment: 
+                    <InputAdornment position="end">
+                      <ColorLensOutlinedIcon sx={{color: 'gray'}}/>
+                    </InputAdornment>
+                }}
                 width='full'
               />
               <Box display='flex' justifyContent='end' alignItems='center' flexDirection='row-reverse' gap='1rem'>
                 <Button variant="contained" sx={{ borderRadius: '10px', backgroundColor: '#00bfa5', color: 'white', width: '8rem', height: '3rem', '&:hover': { backgroundColor: '#00bfa5' } }}>Create</Button>
-                <Button variant="outlined" sx={{ border: '2px solid #04385a', borderRadius: '10px', backgroundColor: 'white', color: '#04385a', width: '8rem', height: '3rem' }} onClick={()=>setOpen(false)}>Cancel</Button>
+                <Button variant="outlined" sx={{ border: '2px solid #04385a', borderRadius: '10px', backgroundColor: 'white', color: '#04385a', width: '8rem', height: '3rem' }} onClick={() => handleClose()}>Cancel</Button>
               </Box>
             </Box>
           </Modal>
@@ -122,7 +136,7 @@ export default function Board() {
         {
           process.map((process) => {
             return (
-              <Link to={`/board/${process.id}`} style={{textDecoration: 'none'}}><Process process={process.name} color={process.color} /></Link>
+              <Link to={`/board/${process.id}`} style={{ textDecoration: 'none' }}><Process process={process.name} color={process.color} /></Link>
             )
           })
         }
