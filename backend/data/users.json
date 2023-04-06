@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "name": "John",
+        "lastName": "Doe",
+        "email": "johndoe@email.com",
+        "password": "abcd",
+        "age": 25,
+        "permission": "Admin"
+    },
+    {
+        "id": "2",
+        "name": "Jane",
+        "lastName": "Doe",
+        "email": "janedoe@email.com",
+        "password": "abcd",
+        "age": 23,
+        "permission": "User"
+    },
+    {
+        "id": "3",
+        "name": "Jack",
+        "lastName": "Doe",
+        "email": "johndoe@email.com",
+        "password": "abcd",
+        "age": 27,
+        "permission": "Moderator"
+    }
+]
