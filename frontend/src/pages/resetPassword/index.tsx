@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Step1 from './components/Step1'
+import Step2 from './components/Step2'
+import Step3 from './components/Step3'
+
 import AuthDesign from '../../components/AuthDesign'
 
 import Grid from '@mui/material/Grid'
@@ -98,66 +102,27 @@ export default function Signup() {
         }
       }
     },
+    flexColumn: {
+      display: 'flex',
+      flexDirection: 'column',
+      margin: '6rem'
+    }
   }
 
   return (
     <Grid container>
       <CssBaseline />
       <Grid item xs={12} lg={4}>
-        <Box display='flex' flexDirection='column' margin='6rem'>
+        <Box sx={styles.flexColumn}>
           <Box marginBottom='5rem'><img src={Logo} alt='logo' width={80} height={80} /></Box>
           {
             step === 'step1' ?
-              <>
-                <Typography variant='h5' fontWeight='bold' color='#464356'>Do you forget your password?</Typography>
-                <Typography variant='subtitle1' color='textSecondary' width="24rem">Insert your email and we will send you a link in your email box to resest your password</Typography>
-                <FormControl sx={{ marginTop: '2rem' }}>
-                  <CssTextField
-                    sx={{ margin: '1rem 0 1rem 0' }}
-                    type='email'
-                    required
-                    id=""
-                    label="Email"
-                    InputProps={{ sx: { borderRadius: '10px' } }}
-                  />
-                </FormControl>
-                <Button variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#f93e6c', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Reset Password</Button>
-                <Box display='flex' flexDirection='row' alignItems='center'>
-                  <Typography variant='subtitle1' color='textSecondary'>Go back to  </Typography>
-                  <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}> Login</Link></Typography>
-                </Box>
-              </>
+              <Step1 setStep={setStep} />
               :
               step === 'step2' ?
-                <>
-                  <Typography variant='h5' fontWeight='bold' color='#464356'>Email was sent</Typography>
-                  <Typography variant='subtitle1' color='textSecondary' width="24rem">check your email inbox.<br />We sent you an email to edit your password. if you didn't recieve the email please check your SPAM inbox. </Typography>
-                  <img src={Verified} height='25%' width='25%' style={{ margin: '4rem 0 0 2rem' }} />
-                </>
+                <Step2 setStep={setStep} />
                 :
-                <>
-                  <Typography variant='h5' fontWeight='bold' color='#464356'>Insert new password</Typography>
-                  <Typography variant='subtitle1' color='textSecondary' width="24rem">insert all your info to proceed with your workspace</Typography>
-                  <FormControl sx={{ marginTop: '2rem' }}>
-                    <CssTextField
-                      sx={{ margin: '1rem 0 1rem 0' }}
-                      type='password'
-                      required
-                      id=""
-                      label="New Password"
-                      InputProps={{ sx: { borderRadius: '10px' } }}
-                    />
-                    <CssTextField
-                      sx={{ margin: '1rem 0 1rem 0' }}
-                      type='password'
-                      required
-                      id=""
-                      label="Confirm new password"
-                      InputProps={{ sx: { borderRadius: '10px' } }}
-                    />
-                  </FormControl>
-                  <Button variant='contained' sx={{ '&:hover':{ backgroundColor:'#f93e6c'}, borderRadius: '10px', backgroundColor: '#f93e6c', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Confirm new Password</Button>
-                </>
+                <Step3 setStep={setStep} />
           }
         </Box>
       </Grid>

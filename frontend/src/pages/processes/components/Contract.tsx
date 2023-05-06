@@ -7,7 +7,7 @@ import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import MuiAccordionSummary, {
     AccordionSummaryProps,
-  } from '@mui/material/AccordionSummary';
+} from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -31,20 +31,20 @@ type CreateDataProps = {
     date: string;
 };
 
-function createData({vod, name, phone, it, person, date}: CreateDataProps) {
+function createData({ vod, name, phone, it, person, date }: CreateDataProps) {
     return { vod, name, phone, it, person, date };
 }
 
 const rows = [
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
-    createData({vod: 'VOD-153', name:'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12'}),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
+    createData({ vod: 'VOD-153', name: 'Theresa Webb', phone: '+39 065262123', it: 'IT069823456', person: 'Alessandro Dumi', date: '2021-05-12' }),
 ];
 
 const Accordion = styled((props: AccordionProps) => (
@@ -103,21 +103,49 @@ export default function Contract() {
         setExpanded(newExpanded ? panel : false);
     };
     // console.log(createData('Frozen yoghurt', 159, 6.0, 24, 4.0))
+    const styles = {
+        typography: {
+            fontWeight: 'bold',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '.5rem'
+        },
+        iconRed: {
+            color: 'red'
+        },
+        tableBody: {
+            border: '2px sold lightgray'
+        },
+        tabeleRow: {
+            '&: hover': {'background-color': '#f6f8fa'},
+            '& td, & th': {
+                border: '3px solid #f6f8fa',
+                '&:hover': { cursor: 'pointer' }
+            }
+        },
+        flexCenter: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem'
+        }
+    }
 
     return (
         <Box>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography variant='h6' fontWeight='bold' display='flex' alignItems='center' sx={{gap: '.5rem'}}><SwipeRightAltOutlinedIcon  sx={{color: 'red'}}/> New Contract <AddCircleOutlineIcon sx={{color:'red'}}/></Typography>
+                    <Typography variant='h6' sx={styles.typography}>
+                        <SwipeRightAltOutlinedIcon sx={styles.iconRed} /> New Contract <AddCircleOutlineIcon sx={styles.iconRed} />
+                    </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 650 }} aria-label="simple table" size='small'>
-                            <TableBody sx={{border: '2px sold lightgray'}}>
+                            <TableBody sx={styles.tableBody}>
                                 {rows.map((row) => (
                                     <TableRow
                                         key={row.name}
-                                        sx={{ '& td, & th': { border: '3px solid #f6f8fa'} }}
+                                        sx={styles.tabeleRow}
                                         onClick={() => setOpenDialog(true)}
                                     >
                                         <TableCell component="th" scope="row">
@@ -126,7 +154,7 @@ export default function Contract() {
                                         <TableCell align="left">{row.name}</TableCell>
                                         <TableCell align="left">{row.phone}</TableCell>
                                         <TableCell align="left">{row.it}</TableCell>
-                                        <TableCell align="left"><Box display='flex' alignItems='center' gap='1rem'><CustomAvatar name={row.person} src='images/test.png' rounded={true}/> {row.person}</Box></TableCell>
+                                        <TableCell align="left"><Box sx={styles.flexCenter}><CustomAvatar name={row.person} src='images/test.png' rounded={true} /> {row.person}</Box></TableCell>
                                         <TableCell align="left">{row.date}</TableCell>
                                     </TableRow>
                                 ))}
@@ -135,8 +163,8 @@ export default function Contract() {
                     </TableContainer>
                 </AccordionDetails>
             </Accordion>
-            {openDialog ? <DialogCard open={openDialog} setOpen={setOpenDialog} />: null}
-            
+            {openDialog ? <DialogCard open={openDialog} setOpen={setOpenDialog} /> : null}
+
         </Box>
     )
 }

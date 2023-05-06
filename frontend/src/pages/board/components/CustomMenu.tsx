@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Box from "@mui/material/Box";
 
 interface CustomMenuProps {
   options: string[];
@@ -22,8 +23,21 @@ export default function CustomMenu({ options }: CustomMenuProps) {
     setAnchorEl(null);
   };
 
+  const styles = {
+    menu: {
+      position: "absolute",
+      top: "5px",
+      right: "5px",
+    },
+    paperProps: {
+      style: {
+            maxHeight: ITEM_HEIGHT * 4.5,
+            width: "20ch",
+    }
+  }
+}
   return (
-    <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+    <Box sx={styles.menu}>
       <IconButton
         sx={{ fontSize: 40 }}
         aria-label="more"
@@ -43,12 +57,7 @@ export default function CustomMenu({ options }: CustomMenuProps) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        PaperProps={{
-          style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
-            width: "20ch",
-          },
-        }}
+        PaperProps={styles.paperProps}
       >
         {options.map((option) => (
           <MenuItem
@@ -60,6 +69,6 @@ export default function CustomMenu({ options }: CustomMenuProps) {
           </MenuItem>
         ))}
       </Menu>
-    </div>
+    </Box>
   );
 }

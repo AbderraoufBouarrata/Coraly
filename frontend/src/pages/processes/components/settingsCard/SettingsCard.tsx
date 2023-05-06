@@ -1,5 +1,6 @@
 import React from 'react'
 import MembersTable from './MembersTable'
+import CustomInput from '../../../../components/CustomInput';
 
 import { styled } from '@mui/material/styles';
 import Modal from '@mui/material/Modal';
@@ -22,28 +23,6 @@ import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined
 import PublishOutlinedIcon from '@mui/icons-material/PublishOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import SettingsIcon from '@mui/icons-material/Settings';
-
-const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-        color: '#04385a',
-        fontWeight: 'bold',
-    },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: '#04385a',
-    },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            border: '2px solid lightgray',
-        },
-        '&:hover fieldset': {
-            borderColor: 'gray',
-        },
-        '&.Mui-focused fieldset': {
-            border: '3px solid #04385a',
-        },
-    },
-});
-
 
 const style = {
     position: 'absolute',
@@ -83,8 +62,40 @@ export default function SettingsCard(props: SettingCardsProps) {
             margin: '2rem 1rem',
             '&:hover': {
                 cursor: 'pointer',
-                color:'red'
+                color: 'red'
             }
+        },
+        flexBetween: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
+        input: {
+            margin: '.5rem 0 '
+        },
+        inputProps: {
+            borderRadius: '10px',
+        },
+        buttonInvite: {
+            display: 'flex',
+            gap: '1rem',
+            backgroundColor: '#f93e6c',
+            color: 'white',
+            borderRadius: '10px',
+            fontWeight: 'bold',
+            '&:hover': { backgroundColor: '#f93e6c' }
+        },
+        typographyMembers: {
+            margin: '.5rem 0 ', 
+            fontWeight: '500', 
+        },
+        flexCenter: {
+            display: 'flex',
+            justifyContent: 'center',
+        },
+        typographyImpostazioni: {
+            fontWeight: 'bold',
+            color: '#464356',
         },
 
     }
@@ -101,9 +112,9 @@ export default function SettingsCard(props: SettingCardsProps) {
             <Box sx={style} >
                 <Grid container justifyContent="start" alignItems="center" >
                     <Grid item xs={12} >
-                        <Box display='flex' justifyContent='space-between' alignItems='center'>
-                            <Typography variant='h5' fontWeight='bold' color='#464356'>Impostazioni</Typography>
-                            <Box display='flex' alignItems='center' gap='.5rem'>
+                        <Box sx={styles.flexBetween}>
+                            <Typography variant='h5' sx={styles.typographyImpostazioni}>Impostazioni</Typography>
+                            <Box gap='.5rem' sx={styles.flexCenter}>
                                 <CloseRoundedIcon onClick={() => setOpen(!open)} sx={styles.icons} />
                             </Box>
                         </Box>
@@ -120,16 +131,16 @@ export default function SettingsCard(props: SettingCardsProps) {
                         </Box>
                     </Grid>
                     <Grid item xs={10} alignSelf='start' >
-                        <Box margin='2rem 0 0 2rem' display='flex' justifyContent='space-between' alignItems='center'>
-                            <CssTextField
-                                sx={{ margin: '.5rem 0 ' }}
+                        <Box margin='2rem 0 0 2rem' sx={styles.flexBetween}>
+                            <CustomInput
+                                sx={styles.input}
                                 type='text'
                                 id=""
                                 label="Contract name"
-                                InputProps={{ sx: { borderRadius: '10px', } }}
+                                inputProps={styles.inputProps}
                             />
-                            <Typography variant='subtitle1' fontWeight={500} color='' sx={{ margin: '.5rem 0 ', fontWeight:'bold' }}>Members</Typography>
-                            <Button variant='contained' sx={{ display:'flex', gap:'1rem', backgroundColor: '#f93e6c', color: 'white', borderRadius: '10px', fontWeight: 'bold', '&:hover': {backgroundColor: '#f93e6c'} }}>
+                            <Typography variant='subtitle1' sx={styles.typographyMembers}>Members</Typography>
+                            <Button variant='contained' sx={styles.buttonInvite}>
                                 <AddCircleOutlineIcon /> <Typography fontWeight='bold'>Invite</Typography>
                             </Button>
                         </Box>

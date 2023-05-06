@@ -13,11 +13,16 @@ type Step1Props = {
 
 export default function Step1(props: Step1Props) {
     const {step, setStep} = props
+    const styles = {
+        image: {
+            margin: '4rem 0 0 2rem'
+        }
+    }
     return (
         <>
             <Typography variant='h5' fontWeight='bold' color='#464356'>Your workspace is ready</Typography>
             <Typography variant='subtitle1' color='textSecondary' width="24rem">check your email inbox.<br />We sent you a confirmation email </Typography>
-            <img src={Verified} height='25%' width='25%' style={{ margin: '4rem 0 0 2rem' }} />
+            <img src={Verified} height='25%' width='25%' style={styles.image} />
         </>
     )
 }

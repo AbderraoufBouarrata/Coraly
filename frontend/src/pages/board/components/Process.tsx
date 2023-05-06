@@ -25,9 +25,8 @@ export default function Process({ process, color, locked = false }: ProcessProps
         setAnchorEl(null);
     };
 
-    const open = Boolean(anchorEl);
-    return (
-        <Box sx={{
+    const styles = {
+        container: {
             margin: '1rem',
             display: 'flex',
             position: 'relative',
@@ -41,36 +40,45 @@ export default function Process({ process, color, locked = false }: ProcessProps
             "&:hover": {
                 cursor: 'pointer',
             }
-        }}>
-            <CustomMenu options={[
-                'None',
-                'Atria',
-                'Callisto',
-                'Dione',
-                'Ganymede',
-                'Hangouts Call',
-                'Luna',
-                'Oberon',
-                'Phobos',
-                'Pyxis',
-                'Sedna',
-                'Titania',
-                'Triton',
-                'Umbriel',
-            ]} />
+        },
+        lock: {
+            position: 'absolute',
+            fontSize: 20, 
+            color: 'white', 
+            textAlign: 'center', 
+            top: '15px', 
+            left: '15px' 
+        },
+        mainIcon: {
+            fontSize: 50, 
+            color: 'white', 
+            textAlign: 'center'
+        },
+        processText:{
+            color: 'white', 
+            textAlign: 'center', 
+            paddingTop: '.5rem'
+        },
+        popoverText: { p: 1 ,color:'white', backgroundColor:'#5a5869' }
+    }
+    const options = ['None', 'Atria', 'Callisto', 'Dione', 'Ganymede', 'Hangouts Call', 'Luna', 'Oberon', 'Phobos', 'Pyxis', 'Sedna', 'Titania', 'Triton', 'Umbriel']
+    const open = Boolean(anchorEl);
+    return (
+        <Box sx={styles.container}>
+            <CustomMenu options={options} />
 
             {locked ?
                 <LockOutlinedIcon aria-owns={open ? 'mouse-over-popover' : undefined}
                     aria-haspopup="true"
                     onMouseEnter={handlePopoverOpen}
                     onMouseLeave={handlePopoverClose}
-                    sx={{ fontSize: 50, color: 'white', textAlign: 'center' }} />
+                    sx={styles.lock} />
                 :
                 <LockOpenOutlinedIcon aria-owns={open ? 'mouse-over-popover' : undefined}
                     aria-haspopup="true"
                     onMouseEnter={handlePopoverOpen}
                     onMouseLeave={handlePopoverClose}
-                    sx={{ position: 'absolute', fontSize: 20, color: 'white', textAlign: 'center', top: '1rem', left: '1rem' }} />
+                    sx={styles.lock} />
             }
             <Popover
                 id="mouse-over-popover"
@@ -89,11 +97,10 @@ export default function Process({ process, color, locked = false }: ProcessProps
                 }}
                 onClose={handlePopoverClose}
                 disableRestoreFocus>
-                <Typography sx={{ p: 1 ,color:'white', backgroundColor:'#5a5869' }}>{locked ? 'This is a private process' : 'This is a public process'}</Typography>
+                <Typography sx={styles.popoverText}>{locked ? 'This is a private process' : 'This is a public process'}</Typography>
             </Popover>
-            <DeveloperBoardIcon sx={{ fontSize: 50, color: 'white', textAlign: 'center' }} />
-            <Typography variant='h6' sx={{ color: 'white', textAlign: 'center', paddingTop: '.5rem' }}>{process}</Typography>
-
+            <DeveloperBoardIcon sx={styles.mainIcon} />
+            <Typography variant='h6' sx={styles.processText}>{process}</Typography>
         </Box>
     )
 }

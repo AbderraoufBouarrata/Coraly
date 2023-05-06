@@ -1,4 +1,6 @@
 import * as React from "react";
+import CustomInput from "../../../../components/CustomInput";
+
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -17,28 +19,6 @@ import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftR
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
-import Grid from "@mui/material/Grid";
-
-const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "#04385a",
-    fontWeight: "bold",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#04385a",
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      border: "2px solid lightgray",
-    },
-    "&:hover fieldset": {
-      borderColor: "gray",
-    },
-    "&.Mui-focused fieldset": {
-      border: "3px solid #04385a",
-    },
-  },
-});
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -82,17 +62,17 @@ type TemporaryDrawerProps = {
 export default function TemporaryDrawer({ state, setState }: TemporaryDrawerProps) {
   const [expanded, setExpanded] = React.useState("panel1");
   const [open, setOpen] = React.useState(false);
-  
+
   const handleChange = (panel: any) => (event: any, newExpanded: any) => {
     setExpanded(newExpanded ? panel : false);
-};
+  };
 
   const toggleDrawer = (anchor: any, open?: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
+      event.type === 'keydown' &&
+      ((event as React.KeyboardEvent).key === 'Tab' ||
+        (event as React.KeyboardEvent).key === 'Shift')
+    ) {
       return;
     }
 
@@ -112,187 +92,143 @@ export default function TemporaryDrawer({ state, setState }: TemporaryDrawerProp
     arrow: {
       color: "red",
     },
-  };
+    button: {
+      backgroundColor: "#f93e6c",
+      color: "white",
+      borderRadius: "10px",
+      fontWeight: "bold",
+    },
+    presentationBox: {
+      width: 500,
+      overflowX: "hidden",
+    },
+    container: {
+      display: "flex",
+      justifyContent: "start",
+      alignItems: "center",
+      flexDirection: "column",
+      margin: "2rem",
+      minHeight: "85vh",
+    },
+    input: {
+      width: "100%",
+      margin: "1rem",
+    },
+    inputProps: {
+      sx:{
+        borderRadius: "10px",
+      }
+      
+    },
+    buttonSave: {
+      backgroundColor: "#2ccfbc",
+      color: "white",
+      fontWeight: "bold",
+      borderRadius: "10px",
+      "&:hover": { backgroundColor: "#2ccfbc" },
+    },
+    buttonCancel: {
+      color: "#04385a",
+      fontWeight: "bold",
+      border: "2px solid",
+      borderRadius: "10px",
+      "&:hover": { border: "2px solid" },
+    },
+    typography: {
+      display: "flex",
+      alignItems: "center",
+      fontWeight: "bold",
+      gap: ".5rem",
+    },
+    flexBetween: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      flexDirection: "row",
+      margin: "2rem"
+    },
+    arrowIcon: {
+      fontSize: "2rem",
+      color: "gray"
+    },
+    typographyTim: {
+      fontWeight: "bold",
+      display: "flex",
+      alignItems: "center",
+      gap: ".5rem"
+    }
 
+
+  };
+  const customInputLabels = ["Contract numbers", "Contract number", "Email", "Contract Type", "Phone Provider"]
+  const accordingLabels = ["Email", "Contract type", "Email", "Discount"]
   return (
     <div>
-      <Button
-        onClick={() => setState(true)}
-        variant="contained"
-        sx={{
-          backgroundColor: "#f93e6c",
-          color: "white",
-          borderRadius: "10px",
-          fontWeight: "bold",
-        }}
-      >
+      <Button onClick={() => setState(true)} variant="contained" sx={styles.button}>
         <AddCircleOutlineIcon /> Add
       </Button>
       <Drawer anchor={"right"} open={state} onClose={() => toggleDrawer(false)}>
         <Box
-          sx={{
-            width: 500,
-            overflowX: "hidden",
-          }}
+          sx={styles.presentationBox}
           role="presentation"
           onClick={() => toggleDrawer(false)}
           onKeyDown={() => toggleDrawer(false)}
         >
-          <Box
-            margin="2rem"
-            display="flex"
-            justifyContent="start"
-            alignItems="center"
-            flexDirection="column"
-            sx={{ minHeight: "85vh" }}
-          >
-            <CssTextField
-              sx={{ margin: "1rem", width: "100%" }}
-              type="text"
-              id=""
-              label="Contract numbers"
-              InputProps={{ sx: { borderRadius: "10px" } }}
-            />
-            <CssTextField
-              sx={{ margin: "1rem", width: "100%" }}
-              type="text"
-              id=""
-              label="Contract number"
-              InputProps={{ sx: { borderRadius: "10px" } }}
-            />
-            <CssTextField
-              sx={{ margin: "1rem", width: "100%" }}
-              type="email"
-              id=""
-              label="Email"
-              InputProps={{ sx: { borderRadius: "10px" } }}
-            />
-            <CssTextField
-              sx={{ margin: "1rem", width: "100%" }}
-              type="email"
-              id=""
-              label="Contract Type"
-              InputProps={{ sx: { borderRadius: "10px" } }}
-            />
-            <CssTextField
-              sx={{ margin: "1rem", width: "100%" }}
-              type="email"
-              id=""
-              label="Phone Provider"
-              InputProps={{ sx: { borderRadius: "10px" } }}
-            />
-            <Accordion
-              expanded={expanded === "panel1"}
-              onChange={handleChange("panel1")}
-              sx={styles.according}
-            >
-              <AccordionSummary
-                aria-controls="panel1d-content"
-                id="panel1d-header"
-                sx={styles.accordingSummary}
-              >
-                <Typography
-                  variant="h6"
-                  fontWeight="bold"
-                  display="flex"
-                  alignItems="center"
-                  sx={{ gap: ".5rem" }}
-                >
-                  <LocalMallOutlinedIcon sx={styles.arrow} />
-                  Tim
-                </Typography>
+          <Box sx={styles.container}>
+            {
+              customInputLabels.map((label, index) => {
+                return (
+                  <CustomInput
+                    key={index}
+                    sx={styles.input}
+                    type="text"
+                    id=""
+                    label={label}
+                    inputProps={styles.inputProps}
+                  />
+                )
+              })
+            }
+            <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")} sx={styles.according}>
+              <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" sx={styles.accordingSummary}>
+                <Typography variant="h6" sx={styles.typography}>
+                  <LocalMallOutlinedIcon sx={styles.arrow} /> Tim</Typography>
               </AccordionSummary>
               <AccordionDetails></AccordionDetails>
             </Accordion>
-            <Accordion
-              expanded={expanded === "panel1"}
-              onChange={handleChange("panel1")}
-              sx={styles.according}
-            >
-              <AccordionSummary
-                aria-controls="panel1d-content"
-                id="panel1d-header"
-                sx={styles.accordingSummary}
-              >
-                <Typography
-                  variant="h6"
-                  fontWeight="bold"
-                  display="flex"
-                  alignItems="center"
-                  sx={{ gap: ".5rem" }}
-                >
-                  <LocalMallOutlinedIcon sx={styles.arrow} />
-                  Tim
-                </Typography>
+            <Accordion expanded={expanded === "panel1"} onChange={handleChange("panel1")} sx={styles.according}>
+              <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" sx={styles.accordingSummary}>
+                <Typography variant="h6" style={styles.typographyTim}>
+                  <LocalMallOutlinedIcon sx={styles.arrow} /> Tim </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Stack direction="column" spacing={2}>
-                  <CssTextField
-                    sx={{ margin: ".5rem 0 " }}
-                    type="email"
-                    id=""
-                    label="Email"
-                    InputProps={{ sx: { borderRadius: "10px" } }}
-                  />
-                  <CssTextField
-                    sx={{ margin: ".5rem 0 " }}
-                    type="text"
-                    id=""
-                    label="Contract Type"
-                    InputProps={{ sx: { borderRadius: "10px" } }}
-                  />
-                  <CssTextField
-                    sx={{ margin: ".5rem 0 " }}
-                    type="number"
-                    id=""
-                    label="Discount"
-                    InputProps={{ sx: { borderRadius: "10px" } }}
-                  />
+                  {
+                    accordingLabels.map((label, index) => {
+                      return (
+                        <CustomInput
+                          key={index}
+                          sx={{ margin: ".5rem 0 " }}
+                          type="text"
+                          id=""
+                          label={label}
+                          inputProps={styles.inputProps}
+                        />
+                      )
+                    })
+                  }
                 </Stack>
               </AccordionDetails>
             </Accordion>
           </Box>
-          <Box
-            margin="2rem"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            flexDirection="row"
-          >
+          <Box sx={styles.flexBetween}>
             <Box>
-              <KeyboardArrowLeftRoundedIcon
-                sx={{ fontSize: "2rem", color: "gray" }}
-              />
-              <KeyboardArrowRightRoundedIcon
-                sx={{ fontSize: "2rem", color: "gray" }}
-              />
+              <KeyboardArrowLeftRoundedIcon sx={styles.arrowIcon} />
+              <KeyboardArrowRightRoundedIcon sx={styles.arrowIcon} />
             </Box>
             <Box display="flex" gap="1rem" flexDirection="row-reverse">
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: "#2ccfbc",
-                  color: "white",
-                  fontWeight: "bold",
-                  borderRadius: "10px",
-                  "&:hover": { backgroundColor: "#2ccfbc" },
-                }}
-              >
-                Save
-              </Button>
-              <Button
-                onClick={() => setState(false)}
-                variant="outlined"
-                sx={{
-                  color: "#04385a",
-                  fontWeight: "bold",
-                  border: "2px solid",
-                  borderRadius: "10px",
-                  "&:hover": { border: "2px solid" },
-                }}
-              >
-                Cancel
-              </Button>
+              <Button variant="contained" sx={styles.buttonSave} >Save</Button>
+              <Button onClick={() => setState(false)} variant="outlined" sx={styles.buttonCancel} >Cancel</Button>
             </Box>
           </Box>
         </Box>

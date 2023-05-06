@@ -5,11 +5,6 @@ import AuthDesign from '../../components/AuthDesign'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import { Button, CssBaseline, TextField } from '@mui/material'
-import Typography from '@mui/material/Typography'
-import FormControl from '@mui/material/FormControl'
-import MuiAlert from '@mui/material/Alert';
-import { styled } from '@mui/material/styles';
-import Checkbox from '@mui/material/Checkbox'
 
 //@ts-ignore 
 import Logo from '../../assets/images/logo.png'//@ts-ignore 
@@ -22,27 +17,6 @@ import DottedSquare from '../../assets/images/dottedSquare.png'
 import Step1 from './components/Step1'
 import Step2 from './components/Step2'
 import Step3 from './components/Step3'
-
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#5a5a73',
-    fontWeight: 'bold',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#5a5a73',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      border: '2px solid lightgray',
-    },
-    '&:hover fieldset': {
-      borderColor: 'gray',
-    },
-    '&.Mui-focused fieldset': {
-      border: '3px solid #5a5a73',
-    },
-  },
-});
 
 
 export default function Signup() {

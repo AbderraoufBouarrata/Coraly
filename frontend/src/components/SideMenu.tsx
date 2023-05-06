@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
+import { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -17,8 +14,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
@@ -54,36 +49,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -118,30 +83,35 @@ export default function SideMenu({ children }: AuthLayoutProps) {
     setOpen(false);
   };
 
-  const menuText = [
-    "Lasting Dynamics",
-    "Dashboard",
-    "Users",
-    "Projects",
-    "Storage",
-    "Next",
-    "Devices",
-    "Network",
-    "Help",
-    "Logout",
-  ];
+  const menuText = ["Lasting Dynamics", "Dashboard", "Users", "Projects", "Storage", "Next", "Devices", "Network", "Help", "Logout",];
   const menuIcons = [
-    <CustomAvatar name="Lasting Dynamics" src="images/test.png" />,
-    <GridViewOutlinedIcon />,
-    <PeopleOutlineIcon />,
-    <DescriptionOutlinedIcon />,
-    <StorageOutlinedIcon />,
-    <KeyboardDoubleArrowRightIcon />,
-    <SmartToyOutlinedIcon />,
-    <AccountTreeOutlinedIcon />,
-    <HelpOutlineIcon />,
-    <ExitToAppRoundedIcon />,
-  ];
+    <CustomAvatar name="Lasting Dynamics" src="images/test.png" />, <GridViewOutlinedIcon />, <PeopleOutlineIcon />, <DescriptionOutlinedIcon />, <StorageOutlinedIcon />,
+    <KeyboardDoubleArrowRightIcon />, <SmartToyOutlinedIcon />, <AccountTreeOutlinedIcon />, <HelpOutlineIcon />, <ExitToAppRoundedIcon />];
+
+  const styles = {
+    flexCenter: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    icon: {
+      color: "lightgray",
+    },
+    listItem: {
+      color: "lightgray",
+      display: "flex",
+    },
+    listItemIcon: {
+      color: "#eaeaec",
+      minWidth: open ? 0 : "",
+      mr: open ? 3 : "auto",
+      justifyContent: "center",
+    },
+    paperProps: {
+      sx: { backgroundColor: "#10355b" }
+    }
+  }
+
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -149,7 +119,7 @@ export default function SideMenu({ children }: AuthLayoutProps) {
       <Drawer
         variant="permanent"
         open={open}
-        PaperProps={{ sx: { backgroundColor: "#10355b" } }}
+        PaperProps={styles.paperProps}
       >
         <Box height="3.5rem">
           {open ? (
@@ -161,19 +131,14 @@ export default function SideMenu({ children }: AuthLayoutProps) {
             >
               <IconButton onClick={handleDrawerClose}>
                 {theme.direction === "rtl" ? (
-                  <ChevronRightIcon sx={{ color: "lightgray" }} />
+                  <ChevronRightIcon sx={styles.icon} />
                 ) : (
-                  <ChevronLeftIcon sx={{ color: "lightgray" }} />
+                  <ChevronLeftIcon sx={styles.icon} />
                 )}
               </IconButton>
             </Box>
           ) : (
-            <Box
-              height="100%"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
+            <Box height="100%" sx={styles.flexCenter}>
               <IconButton
                 aria-label="open drawer"
                 onClick={handleDrawerOpen}
@@ -193,7 +158,7 @@ export default function SideMenu({ children }: AuthLayoutProps) {
             <ListItem
               key={text}
               disablePadding
-              sx={{ color: "lightgray", display: "flex" }}
+              sx={styles.listItem}
             >
               <ListItemButton
                 sx={{
@@ -203,13 +168,7 @@ export default function SideMenu({ children }: AuthLayoutProps) {
                 }}
               >
                 <ListItemIcon
-                  sx={{
-                    color: "#eaeaec",
-                    minWidth: open ? 0 : "",
-
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
+                  sx={styles.listItemIcon}
                 >
                   {menuIcons[index]}
                 </ListItemIcon>

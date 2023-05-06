@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Snackbar from './components/SnackBar'
 import AuthDesign from '../../components/AuthDesign'
 import { UserContext } from '../../context/UserContextProvider'
+import CustomInput from '../../components/CustomInput'
 
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
@@ -25,29 +26,6 @@ import CircleRed from '../../assets/images/circleRed.png'
 import CirclePurple from '../../assets/images/circlePurple.png'
 //@ts-ignore
 import DottedSquare from '../../assets/images/dottedSquare.png'
-
-
-
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: '#04385a',
-    fontWeight: 'bold',
-  },
-  '& .MuiInput-underline:after': {
-    borderBottomColor: '#04385a',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      border: '2px solid lightgray',
-    },
-    '&:hover fieldset': {
-      borderColor: 'gray',
-    },
-    '&.Mui-focused fieldset': {
-      border: '3px solid #04385a',
-    },
-  },
-});
 
 export default function Login() {
   const navigate = useNavigate();
@@ -81,103 +59,158 @@ export default function Login() {
   }
   const styles = {
     background: {
-      backgroundColor: '#f6f8fa',
-      position: 'relative'
+      backgroundColor: "#f6f8fa",
+      position: "relative",
     },
     triangle: {
-      position: 'absolute',
-      top: '0px',
-      right: '-200px',
-      transform: 'rotate(45deg)'
+      position: "absolute",
+      top: "0px",
+      right: "-200px",
+      transform: "rotate(45deg)",
     },
     rectangle: {
-      position: 'absolute',
-      bottom: '0',
-      right: '-50px',
-      transform: 'rotate(-15deg)'
-
+      position: "absolute",
+      bottom: "0",
+      right: "-50px",
+      transform: "rotate(-15deg)",
     },
     circle: {
-      position: 'absolute',
-      top: '-50px',
-      left: '-100px'
+      position: "absolute",
+      top: "-50px",
+      left: "-100px",
     },
     dottedSquare: {
-      position: 'absolute',
-      filter: 'invert(85%) opacity(50%) ',
-      top: '30%',
-      left: '35%'
+      position: "absolute",
+      filter: "invert(85%) opacity(50%) ",
+      top: "30%",
+      left: "35%",
     },
     halfCircle: {
-      position: 'absolute',
-      bottom: '-50px',
-      left: '50px',
-      clip: 'rect(0, 175px, 350px, 0)',
-      transform: 'rotate(65deg)'
+      position: "absolute",
+      bottom: "-50px",
+      left: "50px",
+      clip: "rect(0, 175px, 350px, 0)",
+      transform: "rotate(65deg)",
     },
     text: {
-      position: 'absolute',
-      zIndex: '1',
-      fontWeight: 'bold',
-      fontSize: '4rem',
-      top: '35%',
-      left: '20%',
+      position: "absolute",
+      zIndex: "1",
+      fontWeight: "bold",
+      fontSize: "4rem",
+      top: "35%",
+      left: "20%",
     },
     input: {
       "& .MuiOutlinedInput-root": {
         "&.Mui-focused fieldset": {
-          borderColor: "green"
-        }
-      }
+          borderColor: "green",
+        },
+      },
     },
-  }
+    mainContainer: {
+      display: "flex",
+      flexDirection: "column",
+      margin: "6rem",
+    },
+    typographyH4: {
+      fontWeight: "bold",
+      color: "#464356",
+    },
+    spaceBetween: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    center: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    checkbox: {
+      color: "gray",
+      "&.Mui-checked": { color: "#04385a" },
+    },
+    snackBarSuccess: { 
+      color: '#34d182', 
+      backgroundColor: '#d6fcda', 
+      fontWeight: 'bold', borderRadius: 
+      '10px', 
+      height: '3rem' 
+    },
+    snackBarError: { 
+      color: '#ff4339', 
+      backgroundColor: '#ffe8da', 
+      fontWeight: 'bold', 
+      borderRadius: '10px', 
+      height: '3rem' },
+    loginButton: {
+      borderRadius: '10px', 
+      backgroundColor: '#04385a', 
+      color: 'white', 
+      margin: '1rem 0 1rem 0', 
+      height: '3rem', 
+      width: '100%', 
+      fontWeight: 'bold'
+    },
+    link: {
+      color: 'inherit',
+    },
+    inputStyle: {
+      margin: '1rem 0 1rem 0'
+    }
+  };
   return (
     <Grid container>
       <CssBaseline />
       <Grid item xs={12} lg={4}>
-        <Box display='flex' flexDirection='column' margin='6rem'>
+        <Box sx={styles.mainContainer}>
           <Box marginBottom='5rem'><img src={Logo} alt='logo' width={80} height={80} /></Box>
-          <Typography variant='h4' fontWeight='bold' color='#464356'>Log in</Typography>
+          <Typography variant='h4' sx={styles.typographyH4}>Log in</Typography>
           <Typography variant='subtitle1' color='textSecondary' width="24rem">Thanks to Come back on coraly</Typography>
           <FormControl sx={{ marginTop: '2rem' }}>
-            <CssTextField
+            <CustomInput
               inputRef={emailRef}
-              sx={{ margin: '1rem 0 1rem 0' }}
+              sx={styles.inputStyle}
               type='email'
               required
               id=""
               label="Email"
-              InputProps={{ sx: { borderRadius: '10px' } }}
+              inputProps={{ sx: { borderRadius: '10px' } }}
             />
-            <CssTextField
+            <CustomInput
               inputRef={passwordRef}
-              sx={{ margin: '1rem 0 1rem 0' }}
+              sx={styles.inputStyle}
               type='password'
               required
               id=""
               label="Password"
-              InputProps={{ sx: { borderRadius: '10px' } }}
+              inputProps={{ sx: { borderRadius: '10px' } }}
             />
           </FormControl>
-          <Box display='flex' flexDirection='row' alignItems='center' justifyContent='space-between'>
-            <Box display='flex' flexDirection='row' alignItems='center'>
-              <Checkbox sx={{ color: 'gray', '&.Mui-checked': { color: '#04385a' } }} />
+          <Box sx={styles.spaceBetween}>
+            <Box sx={styles.center}>
+              <Checkbox sx={styles.checkbox} />
               <Typography variant='subtitle1' color='textSecondary'>Remember me</Typography>
             </Box>
-            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/reset-password' style={{ color: 'inherit' }}>Forgot password?</Link></Typography>
+            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'>
+              <Link to='/reset-password' style={ styles.link }>Forgot password?</Link>
+            </Typography>
           </Box>
-          <Link to='' style={{ textDecoration: 'none' }}><Button onClick={() => handleLogin()} variant='contained' sx={{ borderRadius: '10px', backgroundColor: '#04385a', color: 'white', margin: '1rem 0 1rem 0', height: '3rem', width: '100%', fontWeight: 'bold' }}>Log in</Button></Link>
+          <Link to='' style={{ textDecoration: 'none' }}><Button onClick={() => handleLogin()} variant='contained' sx={ styles.loginButton}>Log in</Button></Link>
           <Box display='flex' flexDirection='row' alignItems='center'>
             <Typography variant='subtitle1' color='textSecondary'>Don't you have an account? </Typography>
-            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'><Link to='/signup' style={{ color: 'inherit' }}> Sign up now</Link></Typography>
+            <Typography fontWeight='bold' variant='subtitle1' color='#2ccfbc'>
+              <Link to='/signup' style={ styles.link }> Sign up now</Link>
+            </Typography>
           </Box>
         </Box>
         {
           snackbar === 'show' ?
-            <Snackbar text='Authentification successful!' severity="success" sx={{ color: '#34d182', backgroundColor: '#d6fcda', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
+            <Snackbar text='Authentification successful!' severity="success" sx={styles.snackBarSuccess} />
             :
             snackbar === 'error' ?
-              <Snackbar text='Authentification failed!' severity="error" sx={{ color: '#ff4339', backgroundColor: '#ffe8da', fontWeight: 'bold', borderRadius: '10px', height: '3rem' }} />
+              <Snackbar text='Authentification failed!' severity="error" sx={styles.snackBarError} />
               :
               null
         }

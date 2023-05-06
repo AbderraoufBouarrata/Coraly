@@ -1,6 +1,6 @@
 import React from 'react'
 //@ts-ignore
-import CustomAvatar from './CustomAvatar' 
+import CustomAvatar from './CustomAvatar'
 
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -24,23 +24,34 @@ export default function NavBar() {
             height: '1.75rem',
             width: '1.75rem',
             color: 'gray'
+        },
+        container: {
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '.5rem 1rem .5rem 1rem'
+        },
+        flexCenter: {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem'
         }
     }
     return (
         <Box sx={styles.nav}>
-            <Box display="flex" justifyContent="space-between" alignItems="center" padding=".5rem 1rem .5rem 1rem">
+            <Box sx={styles.container}>
                 <Box>
                     <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
                         <Link underline="hover" color="inherit" href="/board">
                             <Typography fontWeight="bold" variant="h6">Process</Typography>
                         </Link>
-                        {id ? <Typography fontWeight="bold" color="black" variant="h6">Process{id}</Typography>: null}
+                        {id ? <Typography fontWeight="bold" color="black" variant="h6">Process{id}</Typography> : null}
                     </Breadcrumbs>
                 </Box>
-                <Box display="flex" alignItems="center" gap="1rem">
-                    <NotificationsNoneOutlinedIcon sx={styles.bell}/>
-                    <FontDownloadOutlinedIcon/>
-                    <CustomAvatar name='Kend Dods' src='images/test.png'/>
+                <Box sx={styles.flexCenter}>
+                    <NotificationsNoneOutlinedIcon sx={styles.bell} />
+                    <FontDownloadOutlinedIcon />
+                    <CustomAvatar name='Kend Dods' src='images/test.png' />
                 </Box>
             </Box>
         </Box>

@@ -87,6 +87,18 @@ export default function FieldsPhase() {
         },
         arrow: {
             color: 'red'
+        },
+        flexCenter: {
+            display: 'flex',
+            alignItems: 'center',
+            fontWeight: 'bold',
+            gap: '.5rem'
+        },
+        input: {
+            margin: '.5rem 0'
+        },
+        inputProps: {
+            sx: { borderRadius: '10px', }
         }
     }
     return (
@@ -96,55 +108,55 @@ export default function FieldsPhase() {
             </Box>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={styles.according} >
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography variant='h6' fontWeight='bold' display='flex' alignItems='center' sx={{ gap: '.5rem' }}><KeyboardDoubleArrowRightIcon sx={styles.arrow} />Phase 2</Typography>
+                    <Typography variant='h6' sx={styles.flexCenter}><KeyboardDoubleArrowRightIcon sx={styles.arrow} />Phase 2</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Stack direction="column" spacing={2}>
                         <CssTextField
-                            sx={{ margin: '.5rem 0 ' }}
+                            sx={styles.input}
                             type='text'
                             id=""
                             label="Contract name"
-                            InputProps={{ sx: { borderRadius: '10px', } }}
+                            InputProps={styles.inputProps}
                         />
                         <CssTextField
-                            sx={{ margin: '.5rem 0 ' }}
+                            sx={styles.input}
                             type='text'
                             id=""
                             label="Contract number 2"
-                            InputProps={{ sx: { borderRadius: '10px', } }}
+                            InputProps={styles.inputProps}
                         />
                     </Stack>
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={styles.according}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography variant='h6' fontWeight='bold' display='flex' alignItems='center' sx={{ gap: '.5rem' }}><KeyboardDoubleArrowRightIcon sx={styles.arrow} />Start</Typography>
+                    <Typography variant='h6' sx={styles.flexCenter}><KeyboardDoubleArrowRightIcon sx={styles.arrow} />Start</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Stack direction="column" spacing={2}>
                         <CssTextField
-                            sx={{ margin: '.5rem 0 ' }}
+                            sx={styles.input}
                             type='date'
                             id=""
                             label=""
-                            InputProps={{ sx: { borderRadius: '10px', } }}
+                            InputProps={styles.inputProps}
                         />
                     </Stack>
                 </AccordionDetails>
             </Accordion>
             <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')} sx={styles.according}>
                 <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography variant='h6' fontWeight='bold' display='flex' alignItems='center' sx={{ gap: '.5rem' }}><KeyboardDoubleArrowRightIcon sx={styles.arrow} />New Contract</Typography>
+                    <Typography variant='h6' sx={styles.flexCenter}><KeyboardDoubleArrowRightIcon sx={styles.arrow} />New Contract</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Stack direction="column" spacing={2}>
                         <CssTextField
-                            sx={{ margin: '.5rem 0 ' }}
+                            sx={styles.input}
                             type='text'
                             id=""
                             label="New"
-                            InputProps={{ sx: { borderRadius: '10px', } }}
+                            InputProps={styles.inputProps}
                         />
                     </Stack>
                 </AccordionDetails>

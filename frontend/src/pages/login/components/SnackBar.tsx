@@ -10,11 +10,17 @@ type SnackBarProps = {
     sx?: React.CSSProperties | any;
 };
 
-export default function SnackBar({text, severity, sx}: SnackBarProps) {
+export default function SnackBar({ text, severity, sx }: SnackBarProps) {
+    const styles = {
+        stack: {
+            margin: '1rem',
+            width: '20rem'
+        }
+    }
     return (
         //@ts-ignore
-            <Stack sev sx={{ width: '100%' ,margin: '1rem', width: '20rem'}} spacing={2}>
-                <Alert severity={severity} onClose={() => {  }} sx ={sx}>{text}</Alert>
-            </Stack>
+        <Stack sev sx={styles.stack} spacing={2}>
+            <Alert severity={severity} onClose={() => { }} sx={sx}>{text}</Alert>
+        </Stack>
     );
 }
